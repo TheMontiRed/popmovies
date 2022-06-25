@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "pwa-start": "ng build --prod && http-server -p 8080 -c-1 dist/popmovies",
+    "predeploy": "ng build --prod --base-href=/popmovies/",
+    "deploy": "npx gh-pages -d dist/popmovies"
   },
   "private": true,
   "dependencies": {
@@ -18,6 +21,9 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@angular/service-worker": "~12.2.0",
+    "@schematics/angular": "^12.2.16",
+    "http-server": "^14.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -28,6 +34,7 @@
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
+    "gh-pages": "^4.0.0",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
