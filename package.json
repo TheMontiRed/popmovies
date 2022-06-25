@@ -9,7 +9,7 @@
     "test": "ng test",
     "pwa-start": "ng build --prod && http-server -p 8080 -c-1 dist/popmovies",
     "predeploy": "ng build --prod --base-href=/popmovies/",
-    "deploy": "npx gh-pages -d dist/popmovies"
+    "deploy": "npx master -d dist/popmovies"
   },
   "private": true,
   "dependencies": {
