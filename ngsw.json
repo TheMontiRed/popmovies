@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1656168534686,
+  "timestamp": 1656260785427,
   "index": "/popmovies/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,11 @@
       "urls": [
         "/popmovies/favicon.ico",
         "/popmovies/index.html",
-        "/popmovies/main.8aa5403d3cc523594718.js",
+        "/popmovies/main.08c9d8b70455e9ad6096.js",
         "/popmovies/manifest.webmanifest",
-        "/popmovies/polyfills.1dbe9459ad4cd494e844.js",
-        "/popmovies/runtime.80ba2820c178b83a0ef6.js",
-        "/popmovies/styles.31d6cfe0d16ae931b73c.css"
+        "/popmovies/polyfills.68a5939aff8de30347c1.js",
+        "/popmovies/runtime.127dcf2b8a625ebeb115.js",
+        "/popmovies/styles.b43fb9b3b61bea2d4f73.css"
       ],
       "patterns": []
     },
@@ -52,12 +52,12 @@
     "/popmovies/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/popmovies/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/popmovies/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/popmovies/index.html": "bf004bc7891533b150c07ade5af03b101d4b5669",
-    "/popmovies/main.8aa5403d3cc523594718.js": "81002cca37d5813ac8c658bb0968b55e6d178c61",
+    "/popmovies/index.html": "58ccf1d7ecc989faefdfc07414a244d9054f7c3a",
+    "/popmovies/main.08c9d8b70455e9ad6096.js": "24c0740c17f1f38288c0b77406db6dcc51833ddc",
     "/popmovies/manifest.webmanifest": "ed17c2f03a9f97b4ee2dffff2a45b88150d49412",
-    "/popmovies/polyfills.1dbe9459ad4cd494e844.js": "38758328bf59803ba58ea5209f3c1cd6d510e48a",
-    "/popmovies/runtime.80ba2820c178b83a0ef6.js": "8e0593e326dc9dca45ad2d7c604b0437f67ee9d3",
-    "/popmovies/styles.31d6cfe0d16ae931b73c.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    "/popmovies/polyfills.68a5939aff8de30347c1.js": "4e4f9af63cc105e71b9bc0e976cffc353a8923f6",
+    "/popmovies/runtime.127dcf2b8a625ebeb115.js": "cbd49569d7ded1fb4107d52fc9abe24393f3d85e",
+    "/popmovies/styles.b43fb9b3b61bea2d4f73.css": "2c27a0a8abb6e8c822ff8ec59eeeb76fcb8fa355"
   },
   "navigationUrls": [
     {
