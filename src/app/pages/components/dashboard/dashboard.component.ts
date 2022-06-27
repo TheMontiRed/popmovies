@@ -12,13 +12,12 @@ export class DashboardComponent implements OnInit {
   placeholderArray: Array<number> = [];
   
   constructor(public authService: AuthService) {
-    //Create an array to loop through in ngIf
-    this.placeholderArray = Array(5).fill(1); // [4,4,4,4,4]
+    //Create an array to loop through image placeholders
+    this.placeholderArray = Array(15).fill(1); // [4,4,4,4,4]
    }
 
   ngOnInit(): void {
   }
-  
 }
 
 
