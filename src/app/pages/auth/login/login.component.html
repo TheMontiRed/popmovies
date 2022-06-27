@@ -1,0 +1,37 @@
+<div class="displayTable">
+    <div class="displayTableCell">
+      <div class="authBlock">
+        <h3>Sign in</h3>
+       <form action="" role="form">
+        <div class="formGroup">
+          <input type="text" class="form-control" ngModel name="username" placeholder="Username" #userName required>
+        </div>
+  
+        <div class="formGroup">
+          <label>Password</label>
+          <input type="password" class="form-control" ngModel name="password" placeholder="Password" #password required>
+        </div>
+  
+        <div class="formGroup">
+          <button type="button" class="btn btn-primary btn-block" 
+          (click)="authService.SignIn(userName.value,password.value)">Submit</button>
+        </div>
+  
+        <div class="formGroup">
+          <button type="button" class="btn btn-danger btn-block" (click)="authService.GoogleAuth()">
+            Log in with Google
+          </button>
+        </div>
+  
+        <div class="forgotPassword">
+          <span routerLink="/forgot-password">Forgot Password?</span>
+        </div>
+      <div class="redirectToLogin">
+        <span>Not registered yet?<span class="redirect" routerLink="/sign-up"> Register</span></span>
+      </div>
+
+      <div *ngIf="isLoading">
+        <app-spinner></app-spinner>
+      </div>
+       </form>
+</div>
