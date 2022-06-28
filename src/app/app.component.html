@@ -1,30 +1,41 @@
-<div class="container-fluid displayTable">
-    <nav class="navbar bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">
-                <img src="/assets/icons/icon-72x72.png" alt="" width="30" height="24"
-                    class="d-inline-block align-text-top">
-                Popular Movies
-            </a>
-            <div class="d-flex">
-             <div *ngIf="authService.userState"class="dropdown  me-4">
-                    <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                       My Account
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" routerLinkActive="active" [routerLink]="['/profile']">Profile</a></li>
-                      <li><a class="dropdown-item">Logout</a></li>
-                    </ul>
-                  </div>
-            </div>  
-        </div>    
-    </nav>
-    <router-outlet></router-outlet>
-    <nav class="navbar fixed-bottom navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Footer</a>
+<div class="container-fluid" style="margin: auto">
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">
+        <!-- <img src="/assets/icons/icon-72x72.png" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
+        Popular Movies
+      </a>
+      <div>
+        <div *ngIf="authService.userState" class="dropdown  me-4">
+          <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            My Account
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" routerLinkActive="active" [routerLink]="['/profile']">Profile</a></li>
+            <li><a class="dropdown-item">Logout</a></li>
+          </ul>
         </div>
-      </nav>
+      </div>
+    </div>
+  </nav>
+  <div class="row justify-content-center">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-
-
+<div class="container-fluid">
+  <div class="row">
+    <nav class="navbar bottom navbar navbar-dark bg-dark fixed-bottom" >
+      <div class="container-fluid">
+        <div class="row">
+          <div class="d-flex flex-column flex-end">
+            <div>
+              <img src="../assets/images/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg" style="width:30%;" alt="">
+            </div>
+            <div class="tiny-font-light">This product uses the TMDB API but is not endorsed or certified by TMDB</div>
+          </div>
+          </div>
+      </div>
+    </nav>
+  </div>
+</div>

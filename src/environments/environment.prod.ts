@@ -10,5 +10,6 @@ const firebaseConfig = {
 
 export const environment = {
   production: true,
-  firebaseConfig
+  firebaseConfig,
+  tmdbAPIKey: "e7bc36e1bf4e98ccf1db456a7fe1d839",
 };

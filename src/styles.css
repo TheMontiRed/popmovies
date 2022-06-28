@@ -26,7 +26,7 @@
   h4,
   h5,
   h6 {
-    font-weight: 600;
+    font-weight: 300;
   }
   
   .media-body h1 {
@@ -425,3 +425,109 @@
   .rounded-circle {
     max-width: 150px;
   }
+
+  .tiny-font-light{
+    font-size: 0.75em;
+    color: rgb(185, 185, 185) !important;
+  }
+
+  /* Dashboard */
+
+  :root {
+    --max-padding: 20px;
+  }
+  
+  @media (min-width: 481px) {
+    :root {
+      --max-padding: 20px;
+    }
+  }
+
+  .navbar {
+    background-color: rgb(13, 39, 70) !important;
+   }
+
+  .dashboard-banner {
+    padding:20px;
+  }
+  
+  /* 320px
+  480px
+  600px
+  768px
+  900px
+  1024px
+  1200px */
+  
+  .placeholder {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #dce2e8;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .movie_card {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: flex-start;
+    overflow: hidden;
+    margin: 10px;
+    width: 17.5%;
+  }
+  
+  .movie-content {
+    width: 100%;
+    position: relative;
+    white-space: normal;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .movie-image {
+    width: 100%;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+  }
+  
+  .movie-title {
+    padding-top: 0.5em;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+    width: 100%;
+    word-wrap: normal;
+    overflow-wrap: break-word;
+    color: rgb(30, 30, 34);
+  }
+  
+  .movie_rating {
+    width: 100%;
+  }
+  
+  .number-circle {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+  
+    background: #fff;
+    border: 2px solid #666;
+    color: #666;
+    text-align: center;
+  
+    font: 32px Arial, sans-serif;
+  }
+  

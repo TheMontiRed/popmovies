@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -16,6 +18,7 @@ import { ProfileComponent } from './pages/components/profile/profile.component';
 import { LogoutComponent } from './pages/auth/logout/logout.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './pages/auth/verify-email/verify-email.component';
+import { DetailsComponent } from './pages/components/dashboard/details/details.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +31,11 @@ import { VerifyEmailComponent } from './pages/auth/verify-email/verify-email.com
     LogoutComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
