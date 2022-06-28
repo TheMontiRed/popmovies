@@ -27,13 +27,16 @@ export class TmdbService {
 
   getMovies(): Observable<MoviesModel> {
     return this.http.get<MoviesModel>(this.url).pipe(
-      map(movie => movie)
+      map((movie) => movie)
     )
+}
+
+  openDetailsPage(id: number, movies_object: []){
+   this.router.navigate(['details',id], {queryParams: movies_object});
   }
 
-  openDetails(id: number){
-    console.log("ID: ", id);
-   this.router.navigate(['details']);
+  getMovieDetails(){
+
   }
 }
 

@@ -1,4 +1,4 @@
-import { ResultsModel } from "./movies/Results.model";
+import { ResultsModel } from "./Results.model";
 
 export class MoviesModel {
     page: number;

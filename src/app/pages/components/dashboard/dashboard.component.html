@@ -2,7 +2,7 @@
     <div class="jumbotron jumbotron-fluid dashboard-banner">
       <div class="container">
         <h1 class="display-4">Welcome to popular movies</h1>
-        <p class="lead">Below are the 20 most popular movies at this time</p>
+        <p class="lead">Below are the 20 most popular movies today</p>
       </div>
   </div>
   <div class="row justify-content-center">
@@ -16,7 +16,7 @@
     <!-- Wrapper for movies -->
     <div class="d-flex flex-wrap justify-content-center">
       <div class="movie_card" *ngFor="let movie of this.results" >
-        <img class="movie-image" src="{{this.baseImageURI}}{{movie.poster_path}}" alt="..." (click)="openDetails(movie.id)">
+        <img class="movie-image" src="{{this.baseImageURI}}{{movie.poster_path}}" alt="..." (click)="openDetailsPage(movie.id, movie)">
         <div class="movie-content">
           <p class="movie-title">{{ movie.original_title}}</p>
           <small>Popularity: {{ movie.popularity }} </small>

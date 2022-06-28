@@ -37,6 +37,7 @@
     "@angular/cli": "~12.2.17",
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
+    "@types/jest": "^28.1.3",
     "@types/node": "^12.20.55",
     "gh-pages": "^4.0.0",
     "jasmine-core": "~3.8.0",

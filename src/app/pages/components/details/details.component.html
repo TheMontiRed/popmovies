@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <!-- Loading-->
+    <div class="row justify-content-center">
+        <div *ngIf="isLoading">
+            <div class="placeholder">
+                <app-spinner></app-spinner>
+            </div>
+        </div>
+    </div>
+    <!-- Header banner -->
+    <div class="jumbotron ">
+        <img class="details-header-poster;" src="{{this.imageBaseUri}}{{this.movie_object.backdrop_path}})" alt="">
+        <div class="row d-flex justify-content-start align-items-center mt-5">
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12 mt-3 ml-1">
+                <img class="movie-details-image" src="{{this.imageBaseUri}}{{this.movie_object.poster_path}}" alt="">
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12 mt-4">
+                <h1>{{ this.movie_object.original_title }}</h1>
+                <p>{{ this.movie_object.overview }}</p>
+                <p>
+                    {{ this.movie_object.adult }}
+                    {{ this.movie_object.id }}
+                    {{ this.movie_object.original_language }}
+                    {{ this.movie_object.popularity }}
+                    {{ this.movie_object.release_date }}
+                    {{ this.movie_object.title }}
+                    {{ this.movie_object.video }}
+                    {{ this.movie_object.vote_average }}
+                    {{ this.movie_object.vote_count }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

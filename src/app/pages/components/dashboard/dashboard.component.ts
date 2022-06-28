@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { TmdbService } from 'src/app/services/tmdb/tmdb.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { MoviesModel } from '../../../services/tmdb/Movies.model';
 import { catchError, retry, map } from 'rxjs/operators';
 import { TMDBInterface } from'src/app/services/tmdb/tmdb.service';
-import { ResultsModel } from 'src/app/services/tmdb/movies/Results.model';
+import { ResultsModel } from 'src/app/services/tmdb/Results.model';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
   moviesLoaded = false;
   placeholderArray: Array<number> = [];
@@ -31,14 +31,13 @@ export class DashboardComponent implements OnInit {
     this.subscription = this.tmdbService.getMovies().subscribe(movie => {
       this.movies = movie;
       this.results = movie.results;
-     console.log(this.results);
     })
   }
 
-  openDetails(id: number){
-   this.tmdbService.openDetails(id);
+  openDetailsPage(id: number, movies_object: []){
+   this.tmdbService.openDetailsPage(id, movies_object);
   }
-
+  
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }

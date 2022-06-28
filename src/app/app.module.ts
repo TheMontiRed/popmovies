@@ -18,7 +18,7 @@ import { ProfileComponent } from './pages/components/profile/profile.component';
 import { LogoutComponent } from './pages/auth/logout/logout.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './pages/auth/verify-email/verify-email.component';
-import { DetailsComponent } from './pages/components/dashboard/details/details.component';
+import { DetailsComponent } from './pages/components/details/details.component';
 
 @NgModule({
   declarations: [

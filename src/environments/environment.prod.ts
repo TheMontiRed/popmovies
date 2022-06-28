@@ -12,4 +12,6 @@ export const environment = {
   production: true,
   firebaseConfig,
   tmdbAPIKey: "e7bc36e1bf4e98ccf1db456a7fe1d839",
+  tmdbbaseUri: "https://api.themoviedb.org/3/",
+  tmdbimages_uri: "https://image.tmdb.org/t/p/w500/",
 };

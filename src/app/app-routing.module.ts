@@ -8,12 +8,12 @@ import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './pages/auth/verify-email/verify-email.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { ProfileComponent } from './pages/components/profile/profile.component';
-import { DetailsComponent } from './pages/components/dashboard/details/details.component';
+import { DetailsComponent } from './pages/components/details/details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'details', component: DetailsComponent },
+  { path: 'details/:id', component: DetailsComponent },
   { path: 'sign-in', component: LoginComponent },
   { path: 'sign-up', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
