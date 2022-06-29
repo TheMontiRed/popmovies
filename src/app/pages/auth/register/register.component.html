@@ -9,13 +9,19 @@
     <div class="formGroup">
       <label>Password</label>
       <input type="password" class="form-control" placeholder="Password" ngModel name="password" #userPwd required>
+
+       <!-- errorMessage -->
+    <div *ngIf="authService.errorMessage" class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+      <p>{{ authService.errorMessage }}</p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     </div>
 
     <div class="formGroup">
       <input type="button" class="btn btn-block btn-primary" value="Sign Up"
         (click)="authService.SignUp(userEmail.value, userPwd.value)">
-  
-      <button type="button" class="btn btn-block btn-danger m-3" (click)="authService.GoogleAuth()">
+      <button type="button" class="btn btn-block btn-danger m-3 " (click)="authService.GoogleAuth()">
         Continue with Google
       </button>
       <div class="redirectToLogin">

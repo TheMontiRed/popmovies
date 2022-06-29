@@ -1,9 +1,7 @@
 //Credit to https://remotestack.io/angular-firebase-authentication-example-tutorial/
 
 import { Injectable, NgZone } from '@angular/core';
-import { initializeApp } from "firebase/app";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { environment } from "../../../environments/environment"
+import { Router } from "@angular/router";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import * as auth from 'firebase/auth';
 
@@ -13,8 +11,7 @@ import {
 } from '@angular/fire/compat/firestore';
 
 import { User } from './user';
-import firebase from 'firebase/compat';
-import { getAuth } from 'firebase/auth';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +21,11 @@ export class AuthService {
   userState: any;
   errorCode: string = "";
   errorMessage: string = "";
+  responseMessage: string = "";
+  isLoading: boolean = false;
+  actionCodeSettings;
+  isEditingProfile = false;
+ 
 
   constructor(
     public router: Router,
@@ -34,55 +36,66 @@ export class AuthService {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userState = user;
-        this.router.navigate(['dashboard']);
         localStorage.setItem('user', JSON.stringify(this.userState));
         JSON.parse(localStorage.getItem('user'))
+        this.actionCodeSettings = {
+          url: 'https://themontired.github.io/popmovies/?email=' + this.userState.email,
+          handleCodeInApp: true,
+        };
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'))
-        this.router.navigate(['sign-in']);
       }
     })
   }
 
   async SignIn(email: string, password: string) {
-    try {
-      return this.afAuth
-        .signInWithEmailAndPassword(email, password).then(user => {
-          if (user) {
-            this.userState = user;
-            this.router.navigate(['dashboard']);
-          }
-        })
-
-    } catch (error) {
-      window.alert(error.message);
-    }
+    this.isLoading = true;
+    return this.afAuth
+      .signInWithEmailAndPassword(email, password).then(user => {
+        if (user) {
+          this.userState = user;
+          this.router.navigate(['dashboard']);
+          this.isLoading = false;
+        }
+      }).catch(error => {
+        this.errorMessage = error.message;
+        this.isLoading = false;
+      });
   }
+
 
   async SignUp(email: string, password: string) {
     try {
+      this.isLoading = true;
       const result = this.afAuth
         .createUserWithEmailAndPassword(email, password);
       this.SendVerificationMail();
       this.SetUserData((await result).user);
+      this.isLoading = false;
     } catch (error) {
-      window.alert(error.message);
+      this.ngZone.run(() => {
+        this.isLoading = false;
+        this.errorMessage = error.message;
+      })
     }
   }
 
   async SendVerificationMail() {
-    if (this.userState) {
+    this.isLoading = true;
+    if (this.userState && !this.userState.verified) {
       return this.afAuth.currentUser
-        .then((u) => u.sendEmailVerification())
+        .then((u) => u.sendEmailVerification(this.actionCodeSettings))
         .then(() => {
           this.ngZone.run(() => {
-            this.router.navigate(['sign-in']);
+            this.isLoading = false;
+            this.responseMessage = "We've sent an "
           });
         });
     } else {
+      this.isLoading = false;
       this.ngZone.run(() => {
-        this.router.navigate(['sign-in']);
+        this.responseMessage = "Your email has already been verified :-)"
       });
     }
   }
@@ -92,20 +105,23 @@ export class AuthService {
   }
 
   async AuthLogin(provider) {
+    this.isLoading = true;
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
+          this.isLoading = false;
           this.router.navigate(['dashboard']);
         });
         this.SetUserData(result.user);
       })
       .catch((error) => {
-        window.alert(error);
+        this.isLoading = false;
+        this.errorMessage = error.message;
       });
   }
 
-  SetUserData(user: firebase.User) {
+  SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
@@ -122,13 +138,15 @@ export class AuthService {
   }
 
   async ForgotPassword(passwordResetEmail) {
+    this.isLoading = true;
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
+        this.responseMessage = "An email with the reset link has been sent to your email"
       })
       .catch((error) => {
-        window.alert(error);
+        this.isLoading = false
+        this.responseMessage = error.message
       });
   }
 
@@ -138,26 +156,28 @@ export class AuthService {
   }
 
   async SignOut() {
+    this.isLoading = true;
     await this.afAuth.signOut().then(() => {
+      this.isLoading = false;
       localStorage.removeItem('user');
-      window.location.reload();
-      this.router.navigate(['sign-in']);
     }).catch(error => {
-      alert(error.message);
+      this.isLoading = false;
+      this.errorMessage = error.message;
     });
   }
 
-  updateProfile() {
-
+  editProfile(name: string, photoURL: string) {
+    this.isEditingProfile = true;
     this.userState.updateProfile({
-      displayName: "Jane Q. User",
-      photoURL: "https://example.com/jane-q-user/profile.jpg"
+      displayName: name,
+      photoURL: photoURL
     }).then(() => {
+      this.isEditingProfile = true;
       // Update successful
       // ...
     }).catch((error) => {
-      // An error occurred
-      // ...
+      this.isEditingProfile = true;
+     this.errorMessage = error.message;
     });
   }
 }

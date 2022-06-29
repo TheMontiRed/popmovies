@@ -19,6 +19,7 @@ import { LogoutComponent } from './pages/auth/logout/logout.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './pages/auth/verify-email/verify-email.component';
 import { DetailsComponent } from './pages/components/details/details.component';
+import { PageNotFoundComponent } from './pages/components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { DetailsComponent } from './pages/components/details/details.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     DetailsComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

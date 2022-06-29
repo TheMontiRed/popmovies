@@ -9,17 +9,20 @@ import { VerifyEmailComponent } from './pages/auth/verify-email/verify-email.com
 import { AuthGuard } from './services/guards/auth.guard';
 import { ProfileComponent } from './pages/components/profile/profile.component';
 import { DetailsComponent } from './pages/components/details/details.component';
+import { PageNotFoundComponent } from './pages/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/profile', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'details/:id', component: DetailsComponent },
   { path: 'sign-in', component: LoginComponent },
   { path: 'sign-up', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'email-verification', component: VerifyEmailComponent }
+  { path: 'email-verification', component: VerifyEmailComponent },
+  { path: 'page-not-found', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({

@@ -1,17 +1,21 @@
 <div class="profile-container flex-column">
-      <div class="authBlock">
-        <h1>You have registered successfully</h1>
-        <p>We've sent you a verification email. If you did not receive it, click the button below and we shall resend it.</p>
-  
-        <div class="formGroup" *ngIf="authService.userState as user">
-          <p class="text-center">Confirmation mail has been sent to <strong>{{user.email}}</strong>.</p>
-        </div>
-  
-        <div class="formGroup">
-          <button type="button" class="btn btn-block btn-success" (click)="authService.SendVerificationMail()">
-            Verify Email
-          </button>
-        </div>
+  <div class="authBlock">
+    <div *ngIf="!authService.userState.emailVerified">
+      <h1>You have registered successfully</h1>
+      <p>We've sent you a verification email. If you did not receive it, click the button below and we shall resend it.
+      </p>
+
+      <div class="formGroup">
+        <p class="text-center">Confirmation mail has been sent to <strong>{{user.email}}</strong>.</p>
+        <button type="button" class="btn btn-block btn-success" (click)="authService.SendVerificationMail()">
+          Verify Email
+        </button>
       </div>
+    </div>
+
+    <div *ngIf="authService.userState.emailVerified">
+      <h1>You're email has been verified successfully</h1>
+      <button class="btn btn-outline-primary" routerLink="/dashboard">Home</button>
+    </div>
   </div>
-  
+</div>

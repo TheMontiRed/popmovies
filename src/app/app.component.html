@@ -13,7 +13,7 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" routerLinkActive="active" [routerLink]="['/profile']">Profile</a></li>
-            <li><a class="dropdown-item">Logout</a></li>
+            <li><a class="dropdown-item" (click)="authService.SignOut()">Logout</a></li>
           </ul>
         </div>
       </div>
