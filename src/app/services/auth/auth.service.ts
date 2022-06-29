@@ -25,8 +25,6 @@ export class AuthService {
   errorCode: string = "";
   errorMessage: string = "";
 
-  const auth = getAuth();
-
   constructor(
     public router: Router,
     public afs: AngularFirestore,
