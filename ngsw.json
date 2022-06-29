@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1656507051120,
+  "timestamp": 1656530240517,
   "index": "/popmovies/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/popmovies/favicon.ico",
         "/popmovies/index.html",
-        "/popmovies/main.93a61b87f7ee6601cdfb.js",
+        "/popmovies/main.f80de930c05ed0cce29b.js",
         "/popmovies/manifest.webmanifest",
         "/popmovies/polyfills.e611116e28a61dec1949.js",
         "/popmovies/runtime.ccf7f35aea5323cd8644.js",
@@ -37,7 +37,8 @@
         "/popmovies/assets/icons/icon-512x512.png",
         "/popmovies/assets/icons/icon-72x72.png",
         "/popmovies/assets/icons/icon-96x96.png",
-        "/popmovies/assets/images/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg"
+        "/popmovies/assets/images/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.jpg",
+        "/popmovies/assets/images/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.png"
       ],
       "patterns": []
     }
@@ -52,10 +53,11 @@
     "/popmovies/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
     "/popmovies/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/popmovies/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "/popmovies/assets/images/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg": "ae5aa0efce6d973f43ddf0ef9e08244d756954b4",
+    "/popmovies/assets/images/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.jpg": "0beab1d9e33e8ba209d3e2ddf10ee84429a1d18d",
+    "/popmovies/assets/images/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.png": "181b776aa516be8cc0bda380b9a48f679556ead0",
     "/popmovies/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/popmovies/index.html": "d09a10f7de0b6aa5f6d45aedbc2062de8eaf531d",
-    "/popmovies/main.93a61b87f7ee6601cdfb.js": "89be47e8bdaed3751253644f9b2bdbb9384d9286",
+    "/popmovies/index.html": "45cd2e00c9102ff6ffb31928d74fcc8d5d45c766",
+    "/popmovies/main.f80de930c05ed0cce29b.js": "85909570c54fab8635389ff2a124929ac49a83c6",
     "/popmovies/manifest.webmanifest": "ed17c2f03a9f97b4ee2dffff2a45b88150d49412",
     "/popmovies/polyfills.e611116e28a61dec1949.js": "e1dc10f0208560582dfe0a5389eb7f7818fe314a",
     "/popmovies/runtime.ccf7f35aea5323cd8644.js": "c095b4045490c46df6a903227803e26f57cc4b40",
