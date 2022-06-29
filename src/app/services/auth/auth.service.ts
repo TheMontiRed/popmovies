@@ -14,6 +14,7 @@ import {
 
 import { User } from './user';
 import firebase from 'firebase/compat';
+import { getAuth } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -24,39 +25,42 @@ export class AuthService {
   errorCode: string = "";
   errorMessage: string = "";
 
+  const auth = getAuth();
+
   constructor(
     public router: Router,
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public ngZone: NgZone
-    ) {
-      this.afAuth.authState.subscribe((user) =>{
-        if(user){
-          this.userState = user;
-          this.router.navigate(['dashboard']);
-          localStorage.setItem('user', JSON.stringify(this.userState));
-          JSON.parse(localStorage.getItem('user'))
-        } else {
-          localStorage.setItem('user', null);
-          JSON.parse(localStorage.getItem('user'))
-        }
-      } )
-    }
+  ) {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.userState = user;
+        this.router.navigate(['dashboard']);
+        localStorage.setItem('user', JSON.stringify(this.userState));
+        JSON.parse(localStorage.getItem('user'))
+      } else {
+        localStorage.setItem('user', null);
+        JSON.parse(localStorage.getItem('user'))
+        this.router.navigate(['sign-in']);
+      }
+    })
+  }
 
-  async SignIn(email: string, password: string){
+  async SignIn(email: string, password: string) {
     try {
       return this.afAuth
-        .signInWithEmailAndPassword(email, password).then(user =>{
-          if(user){
+        .signInWithEmailAndPassword(email, password).then(user => {
+          if (user) {
             this.userState = user;
             this.router.navigate(['dashboard']);
           }
         })
-  
-      } catch (error){
-        window.alert(error.message);
-      }
+
+    } catch (error) {
+      window.alert(error.message);
     }
+  }
 
   async SignUp(email: string, password: string) {
     try {
@@ -70,11 +74,19 @@ export class AuthService {
   }
 
   async SendVerificationMail() {
-    return this.afAuth.currentUser
-      .then((u) => u.sendEmailVerification())
-      .then(() => {
-        this.router.navigate(['email-verification']);
+    if (this.userState) {
+      return this.afAuth.currentUser
+        .then((u) => u.sendEmailVerification())
+        .then(() => {
+          this.ngZone.run(() => {
+            this.router.navigate(['sign-in']);
+          });
+        });
+    } else {
+      this.ngZone.run(() => {
+        this.router.navigate(['sign-in']);
       });
+    }
   }
 
   GoogleAuth() {
@@ -128,12 +140,26 @@ export class AuthService {
   }
 
   async SignOut() {
-    await this.afAuth.signOut().then(()=>{
+    await this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       window.location.reload();
       this.router.navigate(['sign-in']);
-    }).catch(error =>{
+    }).catch(error => {
       alert(error.message);
+    });
+  }
+
+  updateProfile() {
+
+    this.userState.updateProfile({
+      displayName: "Jane Q. User",
+      photoURL: "https://example.com/jane-q-user/profile.jpg"
+    }).then(() => {
+      // Update successful
+      // ...
+    }).catch((error) => {
+      // An error occurred
+      // ...
     });
   }
 }

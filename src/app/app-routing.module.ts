@@ -11,7 +11,7 @@ import { ProfileComponent } from './pages/components/profile/profile.component';
 import { DetailsComponent } from './pages/components/details/details.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/profile', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'details/:id', component: DetailsComponent },
   { path: 'sign-in', component: LoginComponent },

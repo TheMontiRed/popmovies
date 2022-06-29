@@ -139,12 +139,13 @@ h3 {
   font-size: 14px;
   font-weight: 400;
   display: block;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(11, 19, 73, 0.6);
 }
 
 .redirectToLogin .redirect {
+  font-weight: bold;
   cursor: pointer;
-  color: #ffffff;
+  color: rgba(11, 19, 73, 0.6);
   text-decoration: underline;
 }
 
@@ -485,7 +486,6 @@ body .table thead th {
   align-content: flex-start;
   overflow: hidden;
   margin: 10px;
-  width: 17.5%;
 }
 
 .movie-content {
@@ -551,4 +551,23 @@ body .table thead th {
 
 .details-header-poster img {
   z-index: -1
+}
+
+/* Profile and Auth */
+.profile-container {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  border: 1px solid;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(182, 179, 179);
+}
+
+.profile-content {
+flex: 0 0 120px;
 }

@@ -1,8 +1,7 @@
-<div class="displayTable">
-    <div class="displayTableCell">
-  
+<div class="profile-container flex-column">
       <div class="authBlock">
-        <h3>Thank You for Signing up</h3>
+        <h1>You have registered successfully</h1>
+        <p>We've sent you a verification email. If you did not receive it, click the button below and we shall resend it.</p>
   
         <div class="formGroup" *ngIf="authService.userState as user">
           <p class="text-center">Confirmation mail has been sent to <strong>{{user.email}}</strong>.</p>
@@ -10,12 +9,9 @@
   
         <div class="formGroup">
           <button type="button" class="btn btn-block btn-success" (click)="authService.SendVerificationMail()">
-            Resend Verification Email
+            Verify Email
           </button>
         </div>
       </div>
-  
-  
-    </div>
   </div>
   
