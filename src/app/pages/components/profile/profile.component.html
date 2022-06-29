@@ -1,25 +1,29 @@
 <div class="profile-container">
   <div class="row">
-
     <div class="profile-container flex-column" *ngIf="!(authService.userState)">
       <div class="placeholder">
         <app-spinner></app-spinner>
       </div>
     </div>
     <div class="authBlock" *ngIf="authService.userState as user">
-        <div class="profile-content">
-   
+        <div class="profile-content" *ngIf="!authService.isEditingProfile">
             <img class="align-self-start m-3 img-thumbnail rounded-circle"
               src="{{(user.photoURL) ? user.photoURL : '/assets/icons/icon-128x128.png'}}" alt="{{user.displayName}}">
             <div class="media-body">
               <h2>Hi {{(user.displayName) ? user.displayName : ' there,'}}</h2>
               <p>Email: <strong>{{user.email}}</strong></p>
+              <small>A member since </small><br>
+              <small><strong>{{user.metadata.creationTime}}</strong></small><br>
+              <small>Last Login</small><br>
+              <small><strong>{{user.metadata.lastSignInTime}}</strong></small><br>
+              <small>Current device</small><br>
+              <small> <strong>{{authService.current_deviceDetails.userAgent}}</strong></small><br>
                 <div class="redirectToLogin" *ngIf="!authService.userState.emailVerified">
                   <span>Verify your </span> <span class="redirect" (click)="authService.SendVerificationMail()">email</span>
                 </div>
             </div>
-            <div class="mb-2">
-              <button class="btn btn-outline-primary" (click)="authService.EditProfile()">
+            <div class="mb-2 mt-2">
+              <button class="btn btn-outline-primary" (click)="authService.isEditingProfile = true">
                 Edit profile
               </button>
               <button class="btn btn-outline-danger m-2" (click)="authService.SignOut()">
@@ -28,6 +32,31 @@
         
         </div>
       </div>
+    </div>
+
+    <div class="authBlock" *ngIf="authService.isEditingProfile">
+      <h3>Edit profile</h3>
+
+      <form action="" role="form" #updateForm="ngForm">
+  
+        <div class="formGroup">
+          <label>Name</label>
+          <input type="text" class="form-control" ngModel name="name" placeholder="Name" #name required>
+        </div>
+  
+        <div class="formGroup">
+          <button type="button" class="btn btn-primary btn-block"
+            (click)="authService.updateProfile(name.value)"[disabled]="!updateForm.valid">Update profile</button>
+            
+            <div *ngIf="authService.errorMessage" class="alert alert-danger mt-4" role="alert" >
+              <p>{{ authService.errorMessage }}</p>
+            </div>
+
+      </div>
+        <div *ngIf="isLoading">
+          <app-spinner></app-spinner>
+        </div>
+      </form>
     </div>
   </div>
 </div>

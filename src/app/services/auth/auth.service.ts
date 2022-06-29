@@ -4,6 +4,9 @@ import { Injectable, NgZone } from '@angular/core';
 import { Router } from "@angular/router";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import * as auth from 'firebase/auth';
+import { DeviceDetectorService } from 'ngx-device-detector';
+
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 import {
   AngularFirestore,
@@ -25,13 +28,16 @@ export class AuthService {
   isLoading: boolean = false;
   actionCodeSettings;
   isEditingProfile = false;
- 
+  previous_deviceDetails;
+  current_deviceDetails;
 
   constructor(
-    public router: Router,
-    public afs: AngularFirestore,
-    public afAuth: AngularFireAuth,
-    public ngZone: NgZone
+    private router: Router,
+    private afs: AngularFirestore,
+    private afAuth: AngularFireAuth,
+    private ngZone: NgZone,
+    private db: AngularFireDatabase,
+    private deviceService: DeviceDetectorService
   ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -42,9 +48,13 @@ export class AuthService {
           url: 'https://themontired.github.io/popmovies/?email=' + this.userState.email,
           handleCodeInApp: true,
         };
+        //Update device info
+        this.current_deviceDetails = this.deviceService.getDeviceInfo();
+        console.log(this.current_deviceDetails);
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'))
+        this.router.navigate(['/']);
       }
     })
   }
@@ -55,7 +65,12 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password).then(user => {
         if (user) {
           this.userState = user;
+          window.alert("last login: " + user.user.metadata.lastSignInTime);
           this.router.navigate(['dashboard']);
+          //get current device
+          //if !equal, send email
+          //update new device
+          this.addNewDevice()
           this.isLoading = false;
         }
       }).catch(error => {
@@ -79,6 +94,20 @@ export class AuthService {
         this.errorMessage = error.message;
       })
     }
+  }
+
+  async addNewDevice(){
+    try {
+      const userRef = this.db.list(this.userState.uid);
+    userRef.push({ device: this.current_deviceDetails});
+    } catch (error){
+      this.errorMessage = error.message;
+      console.error(error.message);
+    }
+  }
+
+  setCurrentDevice(){
+
   }
 
   async SendVerificationMail() {
@@ -160,24 +189,27 @@ export class AuthService {
     await this.afAuth.signOut().then(() => {
       this.isLoading = false;
       localStorage.removeItem('user');
+     this.ngZone.run(()=>{
+      this.router.navigate(['sign-in']);
+     })
     }).catch(error => {
       this.isLoading = false;
       this.errorMessage = error.message;
     });
   }
 
-  editProfile(name: string, photoURL: string) {
-    this.isEditingProfile = true;
+  updateProfile(name: string) {
+    this.isEditingProfile = false;
+    this.isLoading = true;
     this.userState.updateProfile({
-      displayName: name,
-      photoURL: photoURL
+      displayName: name
     }).then(() => {
-      this.isEditingProfile = true;
+      this.isLoading = false;
       // Update successful
       // ...
     }).catch((error) => {
-      this.isEditingProfile = true;
-     this.errorMessage = error.message;
+      this.isLoading = false;
+      this.errorMessage = error.message;
     });
   }
 }
